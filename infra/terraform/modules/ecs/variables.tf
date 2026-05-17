@@ -14,8 +14,8 @@ variable "subnet_ids" {
   type = list(string)
 }
 
-variable "security_group_ids" {
-  type = list(string)
+variable "vpc_id" {
+  default = "vpc-0e8bf70004da3eb94"
 }
 
 variable "desired_count" {

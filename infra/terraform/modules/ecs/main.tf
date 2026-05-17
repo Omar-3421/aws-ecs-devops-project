@@ -29,6 +29,29 @@ resource "aws_ecs_task_definition" "app" {
   ])
 }
 
+resource "aws_security_group" "ecs_service" {
+  name        = "ecs-devops-service-sg"
+  description = "Allow HTTP traffic to ECS service"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    description = "Allow HTTP from internet"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    description = "Allow all outbound traffic"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+
 resource "aws_ecs_service" "app" {
   name            = "flask-app-service"
   cluster         = aws_ecs_cluster.main.id
@@ -38,7 +61,7 @@ resource "aws_ecs_service" "app" {
 
   network_configuration {
     subnets          = var.subnet_ids
-    security_groups  = var.security_group_ids
+    security_groups  = [aws_security_group.ecs_service.id]
     assign_public_ip = true
   }
 }

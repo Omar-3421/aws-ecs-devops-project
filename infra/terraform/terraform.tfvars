@@ -4,9 +4,7 @@ subnet_ids = [
   "subnet-05934d9d062ebe549"
 ]
 
-security_group_ids = [
-  "sg-02de993edf0198e18"
-]
+
 
 desired_count = 1
 # -----------------------------------------
