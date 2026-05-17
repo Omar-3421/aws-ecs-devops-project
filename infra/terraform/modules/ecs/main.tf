@@ -2,6 +2,12 @@ resource "aws_ecs_cluster" "main" {
   name = var.cluster_name
 }
 
+
+resource "aws_cloudwatch_log_group" "ecs" {
+  name              = "/ecs/flask-app"
+  retention_in_days = 7
+}
+
 resource "aws_ecs_task_definition" "app" {
   family                   = "flask-app"
   network_mode             = "awsvpc"
@@ -12,21 +18,32 @@ resource "aws_ecs_task_definition" "app" {
 
   execution_role_arn = var.execution_role_arn
 
-  container_definitions = jsonencode([
-    {
-      name      = "flask-app"
-      image     = var.container_image
-      essential = true
+ container_definitions = jsonencode([
+  {
+    name      = "flask-app"
+    image     = var.container_image
+    essential = true
 
-      portMappings = [
-        {
-          containerPort = 80
-          hostPort      = 80
-          protocol      = "tcp"
-        }
-      ]
+    portMappings = [
+      {
+        containerPort = 80
+        hostPort      = 80
+        protocol      = "tcp"
+      }
+    ]
+
+    logConfiguration = {
+      logDriver = "awslogs"
+
+      options = {
+        awslogs-group         = aws_cloudwatch_log_group.ecs.name
+        awslogs-region        = var.aws_region
+        awslogs-stream-prefix = "ecs"
+      }
     }
-  ])
+  }
+])
+
 }
 
 resource "aws_security_group" "ecs_service" {
