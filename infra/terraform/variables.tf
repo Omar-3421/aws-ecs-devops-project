@@ -13,3 +13,15 @@ variable "container_image" {
 variable "execution_role_arn" {
   default = "arn:aws:iam::848960888054:role/ecsTaskExecutionRole"
 }
+
+variable "subnet_ids" {
+  type = list(string)
+}
+
+variable "security_group_ids" {
+  type = list(string)
+}
+
+variable "desired_count" {
+  default = 1
+}

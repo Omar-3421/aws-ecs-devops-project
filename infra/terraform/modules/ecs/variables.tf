@@ -6,10 +6,21 @@ variable "cluster_name" {
   default = "ecs-devops-cluster"
 }
 
-
 variable "container_image" {}
 
 variable "execution_role_arn" {}
+
+variable "subnet_ids" {
+  type = list(string)
+}
+
+variable "security_group_ids" {
+  type = list(string)
+}
+
+variable "desired_count" {
+  default = 1
+}
 
 # -----------------------------------------
 # EXPLANATION
