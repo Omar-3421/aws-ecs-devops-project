@@ -15,7 +15,6 @@ variable "subnet_ids" {
 }
 
 variable "vpc_id" {
-  default = "vpc-0e8bf70004da3eb94"
 }
 
 variable "desired_count" {

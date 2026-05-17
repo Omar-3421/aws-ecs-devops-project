@@ -30,9 +30,13 @@ resource "aws_ecs_task_definition" "app" {
 }
 
 resource "aws_security_group" "ecs_service" {
-  name        = "ecs-devops-service-sg"
+  name        = "ecs-devops-service-sg-v2"
   description = "Allow HTTP traffic to ECS service"
   vpc_id      = var.vpc_id
+
+  lifecycle {
+  create_before_destroy = true
+}
 
   ingress {
     description = "Allow HTTP from internet"
@@ -58,7 +62,7 @@ resource "aws_ecs_service" "app" {
   task_definition = aws_ecs_task_definition.app.arn
   desired_count   = var.desired_count
   launch_type     = "FARGATE"
-
+/*  */
   network_configuration {
     subnets          = var.subnet_ids
     security_groups  = [aws_security_group.ecs_service.id]

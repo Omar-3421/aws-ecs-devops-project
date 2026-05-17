@@ -1,8 +1,3 @@
-subnet_ids = [
-  "subnet-0b8da45742a6d7f52",
-  "subnet-09bc1d746d2e8031b",
-  "subnet-05934d9d062ebe549"
-]
 
 
 
