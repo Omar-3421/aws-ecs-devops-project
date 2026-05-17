@@ -6,21 +6,10 @@ variable "cluster_name" {
   default = "ecs-devops-cluster"
 }
 
-# -----------------------------------------
-# EXPLANATION
-# -----------------------------------------
-#
-# Variables allow reusable infrastructure.
-#
-# Instead of hardcoding values directly
-# into resources, we store them as variables.
-#
-# aws_region:
-# Stores the AWS deployment region.
-#
-# cluster_name:
-# Stores the ECS cluster name.
-#
-# ClickOps equivalent:
-# Typing values into AWS Console form fields.
-#
+variable "container_image" {
+  default = "848960888054.dkr.ecr.eu-west-2.amazonaws.com/aws-ecs-devops-project:v6"
+}
+
+variable "execution_role_arn" {
+  default = "arn:aws:iam::848960888054:role/ecsTaskExecutionRole"
+}

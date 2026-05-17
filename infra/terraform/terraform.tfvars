@@ -1,4 +1,4 @@
-aws_region  = "eu-west-2"
+aws_region   = "eu-west-2"
 cluster_name = "terraform-ecs-cluster"
 
 # -----------------------------------------
