@@ -85,6 +85,16 @@ resource "aws_ecs_service" "app" {
     security_groups  = [aws_security_group.ecs_service.id]
     assign_public_ip = true
   }
+
+  load_balancer {
+  target_group_arn = var.target_group_arn
+  container_name   = "flask-app"
+  container_port   = 80
+}
+
+depends_on = [
+  aws_ecs_task_definition.app
+]
 }
 # -----------------------------------------
 # EXPLANATION

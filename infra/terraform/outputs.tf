@@ -25,3 +25,19 @@ output "ecs_task_definition_arn" {
 output "ecs_security_group_id" {
   value = module.ecs.security_group_id
 }
+
+output "alb_dns_name" {
+  value = module.alb.alb_dns_name
+}
+
+output "alb_target_group_arn" {
+  value = module.alb.target_group_arn
+}
+
+output "alb_security_group_id" {
+  value = module.alb.alb_security_group_id
+}
+
+output "ecr_repository_url" {
+  value = module.ecr.repository_url
+}

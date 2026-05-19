@@ -27,4 +27,6 @@ module "ecs" {
   desired_count = var.desired_count
 
   aws_region = var.aws_region
+
+  target_group_arn = module.alb.target_group_arn
 }

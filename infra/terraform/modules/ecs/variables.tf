@@ -21,6 +21,7 @@ variable "desired_count" {
   default = 1
 }
 
+variable "target_group_arn" {}
 # -----------------------------------------
 # EXPLANATION
 # -----------------------------------------
