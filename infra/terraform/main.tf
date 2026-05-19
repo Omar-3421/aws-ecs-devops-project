@@ -9,6 +9,7 @@ module "alb" {
 
   vpc_id            = module.vpc.vpc_id
   public_subnet_ids = module.vpc.public_subnet_ids
+  certificate_arn   = "arn:aws:acm:eu-west-2:848960888054:certificate/550e1c25-0532-4862-8df7-35db21cac6b7"
 }
 
 module "ecr" {
