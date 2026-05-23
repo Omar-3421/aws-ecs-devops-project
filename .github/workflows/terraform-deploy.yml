@@ -39,3 +39,20 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build Docker image
+        run: docker build -t aws-ecs-devops-project .
+        working-directory: .
+
+      - name: Tag Docker image
+        run: docker tag aws-ecs-devops-project:latest 848960888054.dkr.ecr.eu-west-2.amazonaws.com/aws-ecs-devops-project:v6
+        working-directory: .
+
+      - name: Push Docker image to ECR
+        run: docker push 848960888054.dkr.ecr.eu-west-2.amazonaws.com/aws-ecs-devops-project:v6
+
+      - name: Force ECS new deployment
+        run: aws ecs update-service --cluster ecs-devops-cluster --service flask-app-service --force-new-deployment --region eu-west-2
