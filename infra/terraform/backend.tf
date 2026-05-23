@@ -1,11 +1,11 @@
 terraform {
   backend "s3" {
-    bucket = "omar-ecs-project3421"
-    key    = "ecs-devops/terraform.tfstate"
-    region = "eu-west-2"
+    bucket       = "omar-ecs-project3421"
+    key          = "ecs-project/terraform.tfstate"
+    region       = "eu-west-2"
+    use_lockfile = true
   }
 }
-
 # ----------------------------------------
 # EXPLANATION
 # ----------------------------------------
