@@ -31,3 +31,12 @@ module "ecs" {
 
   target_group_arn = module.alb.target_group_arn
 }
+
+resource "cloudflare_dns_record" "ecs" {
+  zone_id = var.cloudflare_zone_id
+  name    = "ecs"
+  content = module.alb.alb_dns_name
+  type    = "CNAME"
+  ttl     = 1
+  proxied = false
+}

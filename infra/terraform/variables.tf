@@ -18,3 +18,11 @@ variable "execution_role_arn" {
 variable "desired_count" {
   default = 1
 }
+
+variable "cloudflare_zone_id" {
+  type = string
+}
+
+variable "domain_name" {
+  default = "ecs.omarprojects.co.uk"
+}
