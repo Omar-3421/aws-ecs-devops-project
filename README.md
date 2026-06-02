@@ -1,6 +1,5 @@
-# aws-ecs-devops-project
-Production-style AWS ECS deployment using Terraform, Docker, GitHub Actions, and HTTPS
 # AWS ECS DevOps Project
+Production-style AWS ECS deployment using Terraform, Docker, GitHub Actions, and HTTPS
 
 ## Project Overview
 
@@ -14,13 +13,6 @@ The application is accessible through a custom domain:
 https://ecs.omarprojects.co.uk
 ```
 
----
-
-# Architecture
-
-```text
-Developer → GitHub → GitHub Actions → Amazon ECR → ECS Fargate → Application Load Balancer → Cloudflare DNS → Users
-```
 
 ---
 
